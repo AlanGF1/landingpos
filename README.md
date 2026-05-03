@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📱 Apeiron Suite - Product Landing Page
 
-## Getting Started
+Esta carpeta contiene el código fuente de la página de aterrizaje oficial de los productos **Apeiron Axis** y **Apeiron Oris**. Es la vitrina principal donde los clientes conocen las capacidades de nuestros sistemas.
 
-First, run the development server:
+- **Directorio Local:** `/home/alan/Desktop/aperion-landing/`
+- **Repositorio GitHub:** `https://github.com/AlanGF1/landingpos`
+- **Tecnología:** Next.js + Tailwind CSS
+- **Despliegue:** Vercel (`https://landingpos.vercel.app/`)
 
+---
+
+## 🚀 Cómo actualizar la landing
+
+Para subir cambios a internet, corre estos comandos en la terminal **dentro de esta carpeta**:
+
+### 1. Preparar cambios
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git add .
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Crear commit
+```bash
+git commit -m "Explicación del cambio (ej: nueva sección de facturación)"
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Subir cambios
+```bash
+git push origin main
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🛡️ Estructura del Proyecto
+- `src/app/page.tsx`: Es el archivo principal donde vive todo el diseño y contenido de la página.
+- `src/app/globals.css`: Estilos globales y animaciones personalizadas.
+- `src/app/layout.tsx`: Configuración de SEO (Títulos y descripciones para Google).
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## ⚠️ Diferencia Clave
+**NO confundir** con el repositorio de la agencia (`apeiron-agencia`). 
+- Este repo (`landingpos`) es para mostrar **QUÉ HACE** el software.
+- El otro repo es para mostrar **QUIÉNES SOMOS** como agencia.

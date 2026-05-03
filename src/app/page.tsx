@@ -1,4 +1,3 @@
-// @ts-nocheck
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
@@ -220,7 +219,7 @@ function HeroSection() {
 }
 
 function ProductCard({ icon: Icon, title, description, badge, color, features }: {
-  icon: any
+  icon: React.ElementType
   title: string
   description: string
   badge: string
@@ -286,7 +285,7 @@ function ShowcaseCarousel({ items, type }: { items: number[], type: 'pos' | 'cmd
     return () => unsubscribe()
   }, [x])
 
-  useAnimationFrame((_t, _delta) => {
+  useAnimationFrame(() => {
     if (!isPaused) {
       const speed = 0.8 
       x.set(x.get() - speed)

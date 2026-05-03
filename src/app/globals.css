@@ -3,34 +3,121 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ── Variables de Marca ── */
+  --ap-purple:        #7c3aed;
+  --ap-purple-mid:    #8b5cf6;
+  --ap-purple-light:  #a78bfa;
+  --ap-purple-soft:   #ede9fe;
+  --ap-purple-text:   #4c1d95;
+
+  --ap-pink:          #db2777;
+  --ap-pink-mid:      #ec4899;
+  --ap-pink-light:    #f472b6;
+  --ap-pink-soft:     #fce7f3;
+  --ap-pink-text:     #831843;
+
+  --ap-blue:          #2563eb;
+  --ap-blue-mid:      #3b82f6;
+  --ap-blue-light:    #60a5fa;
+  --ap-blue-soft:     #eff6ff;
+  --ap-blue-text:     #1e3a8a;
+
+  --ap-grad-brand:    linear-gradient(135deg, #7c3aed, #db2777);
+
+  /* ── Superficies ── */
+  --bg-base:          #f5f5f7;
+  --bg-surface:       #ffffff;
+  --bg-inset:         #f0f0f2;
+  --bg-overlay:       rgba(255, 255, 255, 0.85);
+
+  /* ── Texto ── */
+  --text-primary:     #1d1d1f;
+  --text-secondary:   #6e6e73;
+  --text-tertiary:    #aeaeb2;
+
+  --border:           rgba(0, 0, 0, 0.05);
+  --border-medium:    rgba(0, 0, 0, 0.10);
+
+  --shadow-lg:  0 8px 32px rgba(0,0,0,0.10), 0 0 0 1px rgba(0,0,0,0.05);
+
+  /* Override dark variables just in case */
+  --background: 240 10% 96%;
+  --foreground: 240 10% 12%;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  --bg-base:          #0f0e0c;
+  --bg-surface:       #171512;
+  --bg-inset:         #252320;
+  --bg-overlay:       rgba(23, 21, 18, 0.90);
+  --text-primary:     rgba(255, 255, 255, 0.92);
+  --text-secondary:   rgba(255, 255, 255, 0.55);
+  --text-tertiary:    rgba(255, 255, 255, 0.30);
+  --border:           rgba(255, 255, 255, 0.08);
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/* ── Utilidades de la Landing ── */
+
+.text-brand-gradient {
+  background: var(--ap-grad-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-@keyframes fade-in {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+.brand-mark {
+  background: var(--ap-grad-brand);
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.30);
 }
 
-.animate-fade-in {
-  animation: fade-in 0.8s ease-out forwards;
+.bg-grid-pattern {
+  background-image: radial-gradient(var(--border) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
+
+.dark .bg-grid-pattern {
+  background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+}
+
+.glass-panel {
+  background-color: var(--bg-overlay);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border-medium);
+}
+
+.glass-nav {
+  background-color: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.dark .glass-nav {
+  background-color: rgba(23, 21, 18, 0.75);
+}
+
+.pressable {
+  transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.pressable:active {
+  transform: scale(0.97);
+}
+
+.hover-lift {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.shadow-purple { box-shadow: 0 2px 8px rgba(124, 58, 237, 0.30); }
+.shadow-purple-lg { box-shadow: 0 8px 32px rgba(124, 58, 237, 0.40); }

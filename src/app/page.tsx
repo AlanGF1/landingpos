@@ -12,6 +12,8 @@ import {
   Clock,
   Check,
   ArrowRight,
+  ChevronLeft,
+  ChevronRight,
   Menu,
   X,
   Star,
@@ -1186,6 +1188,222 @@ function WhatsAppFloatingButton() {
   )
 }
 
+// ─── SYSTEM GALLERY ───
+
+const systemImages = [
+  { src: '/gallery/1LOGGIN.png', title: 'Pantalla de Login', description: 'Acceso seguro y rápido mediante PIN o correo para cajeros y administradores.' },
+  { src: '/gallery/2PANTALLABIENVENIDA.png', title: 'Pantalla Bienvenida', description: 'Panel principal de inicio de turno, mostrando los módulos operativos disponibles en tiempo real.' },
+  { src: '/gallery/3PANTALLACOMANDERODEPEDIDOS.png', title: 'Comandero de Pedidos', description: 'Vista ágil para capturar órdenes con categorías visuales y búsqueda rápida de platillos.' },
+  { src: '/gallery/4OPCIONESDECOMANDERO.png', title: 'Opciones de Comandero', description: 'Menú contextual para aplicar descuentos, dividir cuentas o agregar notas especiales a la orden.' },
+  { src: '/gallery/5COMANDEROPORCATEGORIAS.png', title: 'Comandero por Categorías', description: 'Navegación visual por grupos de alimentos y bebidas para acelerar la atención en el punto de venta.' },
+  { src: '/gallery/5TOMANDOORDEN.png', title: 'Tomando Orden', description: 'Selección de modificadores y términos de preparación precisos para cada platillo elegido.' },
+  { src: '/gallery/6CONSULTARCUENTA.png', title: 'Consultar Cuenta', description: 'Resumen detallado de la mesa con el total acumulado y opciones rápidas para imprimir el pre-ticket.' },
+  { src: '/gallery/7PANTALLACAJA.png', title: 'Pantalla de Caja', description: 'Centro de cobro optimizado para cerrar mesas rápidamente, calculando el cambio de forma automática.' },
+  { src: '/gallery/8MODALDECOBRO.png', title: 'Modal de Cobro', description: 'Opciones de pago múltiple (efectivo, tarjeta, transferencia) para una flexibilidad total en caja.' },
+  { src: '/gallery/8TICKETS.png', title: 'Tickets', description: 'Historial de tickets generados, permitiendo reimpresiones, cancelaciones o emisión de facturas.' },
+  { src: '/gallery/9GESTIONDEMENU.png', title: 'Gestión de Menú', description: 'Panel administrativo para crear y organizar los productos, categorías y precios de tu restaurante.' },
+  { src: '/gallery/10EDITARPRODUCTIS.png', title: 'Editar Productos', description: 'Ajustes avanzados por artículo, incluyendo imagen, precio, disponibilidad y costeo de insumos.' },
+  { src: '/gallery/11CONFIGURAOFERTAS.png', title: 'Configurar Ofertas', description: 'Creación de promociones, combos y happy hours que se aplican automáticamente en el comandero.' },
+  { src: '/gallery/11MANEJAVARIABLESYCOMENTARIOS.png', title: 'Variables y Comentarios', description: 'Definición de guarniciones, términos de carne y opciones extra obligatorias u opcionales.' },
+  { src: '/gallery/ANALISISDECOSTOSYRENTABILIDAD.png', title: 'Análisis de Costos y Rentabilidad', description: 'Reportes detallados para conocer tus márgenes reales, detectando qué platillos te dejan más ganancia.' },
+  { src: '/gallery/BITACORADECONTROL.png', title: 'Bitácora de Control', description: 'Registro de auditoría que guarda cada acción, cancelación o descuento realizado por el personal.' },
+  { src: '/gallery/CONTROLDEMERMAS.png', title: 'Control de Mermas', description: 'Registro de productos caducados, desperdicios o errores de cocina para un inventario siempre exacto.' },
+  { src: '/gallery/DESHBOARDDETALLADO.png', title: 'Dashboard Detallado', description: 'Métricas clave del día, como ventas totales, métodos de pago y rendimiento de tus meseros.' },
+  { src: '/gallery/DESHBOARDDETALLADO2.png', title: 'Proyecciones y Analíticas', description: 'Gráficas de flujo de ventas por hora y proyecciones basadas en el comportamiento de tus clientes.' },
+  { src: '/gallery/DESHBOARDGERENCIAL.png', title: 'Dashboard Gerencial', description: 'Visión ejecutiva para dueños, concentrando la información de múltiples sucursales en una sola pantalla.' },
+  { src: '/gallery/GESTIONDEPROVEEDORES.png', title: 'Gestión de Proveedores', description: 'Directorio y control de compras, cuentas por pagar y recepción de mercancía para tu almacén.' },
+  { src: '/gallery/MANEJO%20DE%20IMPRESORAS.png', title: 'Manejo de Impresoras', description: 'Configuración de múltiples impresoras térmicas para enrutamiento automático de comandas a barra o cocina.' },
+  { src: '/gallery/MANEJODEIMPRESORAS.png', title: 'Configuración de Tickets', description: 'Opciones de formato de ticket, conexión en red y pruebas de impresión desde el servidor local.' },
+  { src: '/gallery/MANEJODEINVENTARIOEINSUMOS.png', title: 'Inventario e Insumos', description: 'Descuento automático de ingredientes por cada platillo vendido (recetas) y alertas de stock bajo.' },
+  { src: '/gallery/MUCHASMASOPCIONES.png', title: 'Y muchas más opciones...', description: 'Módulos adicionales de fidelización, corte de caja ciego y ajustes operativos del restaurante.' },
+  { src: '/gallery/MUCCHASMASOPCIONES2.png', title: 'Personalización Total', description: 'Configuraciones avanzadas de seguridad, roles de usuario y personalización del ticket de venta.' }
+]
+
+function SystemGallery() {
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
+  
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    if (selectedIndex !== null) {
+      setSelectedIndex((selectedIndex + 1) % systemImages.length)
+    }
+  }
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    if (selectedIndex !== null) {
+      setSelectedIndex((selectedIndex - 1 + systemImages.length) % systemImages.length)
+    }
+  }
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (selectedIndex === null) return
+      if (e.key === 'ArrowRight') setSelectedIndex((prev) => prev !== null ? (prev + 1) % systemImages.length : null)
+      if (e.key === 'ArrowLeft') setSelectedIndex((prev) => prev !== null ? (prev - 1 + systemImages.length) % systemImages.length : null)
+      if (e.key === 'Escape') setSelectedIndex(null)
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [selectedIndex])
+
+  const selectedImage = selectedIndex !== null ? systemImages[selectedIndex] : null
+
+  const [showAll, setShowAll] = useState(false)
+  
+  const displayedImages = showAll ? systemImages : systemImages.slice(0, 8)
+
+  return (
+    <section className="py-24 bg-surface relative overflow-hidden border-t border-border px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+           initial={fadeUp.initial}
+           whileInView={fadeUp.animate}
+           viewport={{ once: true, margin: "-100px" }}
+           transition={fadeUp.transition}
+           className="text-center mb-10 max-w-7xl mx-auto px-6"
+         >
+           <h2 className="font-display font-semibold text-[clamp(1.8rem,4vw,2.5rem)] tracking-[-0.02em] text-text-primary">
+             Galería del Sistema
+           </h2>
+           <p className="mt-4 text-[17px] leading-[1.65] text-text-secondary max-w-2xl mx-auto">
+             Explora en detalle todas las pantallas y funcionalidades de Apeiron.
+           </p>
+         </motion.div>
+         
+         <div className="relative mt-12">
+           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+             <AnimatePresence>
+               {displayedImages.map((img, i) => (
+                 <motion.div
+                   key={img.src}
+                   layout
+                   initial={{ opacity: 0, scale: 0.95 }}
+                   animate={{ opacity: 1, scale: 1 }}
+                   exit={{ opacity: 0, scale: 0.95 }}
+                   transition={{ duration: 0.4 }}
+                   className="group relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer bg-inset border border-border shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-ap-purple/50 transition-all duration-300"
+                   onClick={() => setSelectedIndex(systemImages.findIndex(x => x.src === img.src))}
+                 >
+                   <img src={img.src} alt={img.title} className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110" />
+                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
+                     <p className="text-white text-base font-bold drop-shadow-md translate-y-4 group-hover:translate-y-0 transition-transform duration-300">{img.title}</p>
+                   </div>
+                 </motion.div>
+               ))}
+             </AnimatePresence>
+           </div>
+           
+           {!showAll && (
+             <div className="absolute -bottom-2 left-0 right-0 h-56 bg-gradient-to-t from-surface via-surface/80 to-transparent flex items-end justify-center pb-4 z-10 pointer-events-none">
+               <button 
+                 onClick={() => setShowAll(true)}
+                 className="pointer-events-auto flex items-center gap-2 bg-white dark:bg-zinc-900 border border-border text-text-primary hover:text-ap-purple hover:border-ap-purple px-6 py-3 rounded-full font-semibold shadow-lg transition-all hover:scale-105"
+               >
+                 Ver todas las pantallas (26)
+                 <ChevronDown size={20} />
+               </button>
+             </div>
+           )}
+           
+           {showAll && (
+             <div className="mt-12 flex justify-center">
+               <button 
+                 onClick={() => setShowAll(false)}
+                 className="flex items-center gap-2 bg-transparent text-text-secondary hover:text-text-primary px-6 py-3 rounded-full font-semibold transition-all hover:bg-black/5 dark:hover:bg-white/5"
+               >
+                 Ocultar pantallas
+                 <ChevronDown size={20} className="rotate-180" />
+               </button>
+             </div>
+           )}
+         </div>
+      </div>
+
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedIndex(null)}
+            className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black/95 backdrop-blur-xl cursor-zoom-out"
+          >
+            {/* Close Button */}
+            <button 
+              onClick={() => setSelectedIndex(null)}
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 w-10 h-10 sm:w-12 sm:h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-all hover:scale-110 z-[110] border border-white/10"
+            >
+              <X size={24} />
+            </button>
+
+            {/* Navigation Arrows */}
+            <button 
+              onClick={handlePrev}
+              className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/5 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-all hover:scale-110 z-[110] border border-white/10 backdrop-blur-md hidden sm:flex"
+            >
+              <ChevronLeft size={28} />
+            </button>
+            
+            <button 
+              onClick={handleNext}
+              className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/5 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-all hover:scale-110 z-[110] border border-white/10 backdrop-blur-md hidden sm:flex"
+            >
+              <ChevronRight size={28} />
+            </button>
+
+            {/* Flex Container for Image and Caption */}
+            <div className="w-full h-full flex flex-col items-center pointer-events-none pt-16 sm:pt-4">
+              
+              {/* Image Container - flex-1 min-h-0 lets it shrink and fill available space */}
+              <div className="flex-1 w-full min-h-0 flex items-center justify-center p-2 sm:p-8">
+                <motion.img 
+                  key={selectedImage.src}
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.9, opacity: 0 }}
+                  transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                  src={selectedImage.src} 
+                  alt={selectedImage.title} 
+                  className="max-w-full max-h-full object-contain drop-shadow-2xl pointer-events-auto rounded-lg"
+                  onClick={(e) => e.stopPropagation()}
+                />
+              </div>
+              
+              {/* Glass Caption - bottom sheet style on mobile */}
+              <motion.div 
+                key={`caption-${selectedImage.src}`}
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.1, duration: 0.3 }}
+                className="shrink-0 w-full sm:w-[90%] max-w-2xl bg-black/60 sm:bg-black/40 backdrop-blur-2xl border-t sm:border border-white/20 rounded-t-3xl sm:rounded-3xl p-5 sm:p-6 pb-8 sm:pb-6 text-center pointer-events-auto shadow-2xl relative sm:mb-8 mt-auto"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-ap-purple text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-purple-lg">
+                  {selectedIndex !== null ? selectedIndex + 1 : 1} / {systemImages.length}
+                </div>
+
+                <h3 className="text-white font-display font-bold text-xl sm:text-2xl mb-1.5 sm:mb-2 drop-shadow-md mt-1 sm:mt-0">
+                  {selectedImage.title}
+                </h3>
+                <p className="text-white/80 text-[13px] sm:text-[15px] leading-relaxed max-w-xl mx-auto">
+                  {selectedImage.description}
+                </p>
+                
+                {/* Mobile Navigation Controls */}
+                <div className="flex sm:hidden justify-center gap-12 items-center mt-4 pt-4 border-t border-white/10">
+                  <button onClick={handlePrev} className="p-3 bg-white/10 active:bg-white/20 rounded-full text-white transition-colors"><ChevronLeft size={24} /></button>
+                  <button onClick={handleNext} className="p-3 bg-white/10 active:bg-white/20 rounded-full text-white transition-colors"><ChevronRight size={24} /></button>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
+  )
+}
+
 // ─── PAGE ───
 
 export default function LandingPage() {
@@ -1195,6 +1413,7 @@ export default function LandingPage() {
       <HeroSection />
       <StatsSection />
       <ShowcaseSection />
+      <SystemGallery />
       <FeaturesGrid />
       <ProductsSection />
       <TestimonialsSection />

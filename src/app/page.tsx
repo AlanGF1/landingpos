@@ -1274,7 +1274,7 @@ function SystemGallery() {
          <div className="relative mt-12">
            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
              <AnimatePresence>
-               {displayedImages.map((img, i) => (
+               {displayedImages.map((img) => (
                  <motion.div
                    key={img.src}
                    layout

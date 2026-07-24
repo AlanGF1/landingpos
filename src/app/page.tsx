@@ -1318,6 +1318,42 @@ function SystemGallery() {
              </div>
            )}
          </div>
+
+         {/* More Features Banner */}
+         <motion.div 
+           initial={{ opacity: 0, y: 20 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           viewport={{ once: true, margin: "-50px" }}
+           className="mt-24 max-w-4xl mx-auto bg-inset border border-border rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden shadow-sm"
+         >
+           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[2px] bg-gradient-to-r from-transparent via-ap-purple/70 to-transparent"></div>
+           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-16 bg-ap-purple/10 blur-2xl rounded-full"></div>
+           
+           <h3 className="font-display font-bold text-2xl sm:text-3xl text-text-primary mb-8 tracking-tight">
+             Y mucho más de lo que imaginas
+           </h3>
+           
+           <div className="flex flex-wrap justify-center gap-3 sm:gap-4 relative z-10">
+             {[
+               'Mapa de mesas interactivo', 
+               'Portal de facturación 24/7', 
+               'Manejo de comedor de empleados', 
+               'Renta de equipo', 
+               'Monedero electrónico (VIP)',
+               'Integraciones a medida',
+               'Entre mucho más...'
+             ].map((feature, i) => (
+               <span key={i} className="px-4 py-2.5 bg-surface border border-border rounded-full text-sm font-semibold text-text-primary flex items-center gap-2 hover:border-ap-purple/50 hover:shadow-sm transition-all">
+                 <Check size={16} className="text-ap-purple" />
+                 {feature}
+               </span>
+             ))}
+           </div>
+           
+           <p className="mt-8 text-text-secondary text-[16px] font-medium max-w-2xl mx-auto">
+             Apeiron es un ecosistema completo que se adapta a las necesidades específicas de tu operación, diseñado para evolucionar contigo.
+           </p>
+         </motion.div>
       </div>
 
       <AnimatePresence>
